@@ -1,0 +1,14 @@
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: ex5-policy
+  namespace: ex5
+spec:
+  podSelector:
+    matchLabels:
+      type: backend
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          type: "frontend"

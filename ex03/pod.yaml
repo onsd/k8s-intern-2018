@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ex3-pod
+  namespace: ex3
+spec:
+  containers:
+  - name: db
+    image: mysql
+    env:
+    - name: MYSQL_ROOT_PASSWORD
+      value: "password"
+    resources:
+      requests:
+        memory: "32Gi"
+        cpu: "1000m"
+      limits:
+        memory: "64Gi"
+        cpu: "2000m"
+  - name: wp
+    image: wordpress
+    resources:
+      requests:
+        memory: "32Gi"
+        cpu: "1000m"
+      limits:
+        memory: "64Gi"
+        cpu: "2000m"
+    volumeMounts:
+    - mountPath: /wordpress
+      name: data
+  volumes:
+  - name: data
+    hostPath:
+      path: /workdir/data
+      type: Directory
