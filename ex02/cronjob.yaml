@@ -6,7 +6,6 @@ metadata:
 spec:
   schedule: "*/1 * * * *"
   successfulJobsHistoryLimit: 5
-  failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
   jobTemplate:
     spec:
@@ -19,4 +18,3 @@ spec:
             - sh
             - -c
             - exit $((RANDOM % 2))
-          restartPolicy: Never
